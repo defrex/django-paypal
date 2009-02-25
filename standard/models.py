@@ -115,6 +115,7 @@ class PayPalIPN(models.Model):
     # tax
 
     # Additional information - full IPN query and time fields.
+    user = models.ForeignKey('auth.user', blank=True, null=True)
     test_ipn = models.BooleanField(default=False, blank=True)
     ipaddress = models.IPAddressField(blank=True)
     flag = models.BooleanField(default=False, blank=True)
@@ -208,6 +209,8 @@ class PayPalIPN(models.Model):
     def init(self, request):
         self.query = request.POST.urlencode()
         self.ipaddress = request.META.get('REMOTE_ADDR', '')
+        if request.user.is_authenticated():
+            self.user = request.user
     
     def set_flag(self, info, code=None):
         """

@@ -46,7 +46,7 @@ class PayPalPaymentsForm(forms.Form):
     
     # API Endpoints.
     ENDPOINT = "https://www.paypal.com/cgi-bin/webscr"
-    IMAGE = "http://images.paypal.com/images/x-click-but01.gif"
+    IMAGE = "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"
     SANDBOX_ENDPOINT = "https://www.sandbox.paypal.com/cgi-bin/webscr"
     SANDBOX_IMAGE = "https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif"
     
@@ -59,7 +59,7 @@ class PayPalPaymentsForm(forms.Form):
     business = forms.CharField(widget=ValueHiddenInput(), initial=RECEIVER_EMAIL)
 
     # Item information.
-    amount = forms.IntegerField(widget=ValueHiddenInput())
+    amount = forms.IntegerField()
     item_name = forms.CharField(widget=ValueHiddenInput())
     item_number = forms.CharField(widget=ValueHiddenInput())
     quantity = forms.CharField(widget=ValueHiddenInput())
